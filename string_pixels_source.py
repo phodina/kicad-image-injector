@@ -18,12 +18,12 @@ class StringPixelsSource(PixelsSource):
     '''
     def __init__(self, text: str):
         self.text = text
-        text_size = _FONT.getsize(text)
-        image_size = (text_size[0] + 2, text_size[1] + 2)
+        text_size = _FONT.getbbox(text)
+        image_size = (text_size[2] + 2, text_size[3] + 2)
         self.image = Image.new("RGBA", image_size, (0, 0, 0, 0))
         draw = ImageDraw.Draw(self.image)
         draw.rectangle(((0, 0), image_size), fill="white")
-        draw.rectangle(((1, 1), text_size), fill="black")
+        draw.rectangle(((1, 1), (text_size[2], text_size[3])), fill="black")
         draw.text((1, -1), text, font=_FONT, spaceing=1)
         self.image = self.image.convert("L")
         self.image = self.image.convert("1")

@@ -182,10 +182,10 @@ class Replacement:
 
     def drawPixels(self):
         footprint = pcbnew.FOOTPRINT(self.pcb)
-        footprint.SetDescription(f"Replaced template - {self.pixels}")
+        footprint.SetLibDescription(f"Replaced template - {self.pixels}")
         footprint.SetLayer(self.placeholder.getLayer())
 
-        footprint.SetPosition(pcbnew.wxPoint(self.first_pixel_pos[0], self.first_pixel_pos[1]))
+        footprint.SetPosition(pcbnew.VECTOR2I(self.first_pixel_pos[0], self.first_pixel_pos[1]))
         pos = (0, 0)
         pixel_i = 0
         x_i = 0
